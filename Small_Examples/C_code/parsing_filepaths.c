@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 
 #define LENGTH 255
@@ -11,17 +12,26 @@ int main(int argc, char **argv){
         return 1;
     }
 
+    
     int tokens = 0;
-    char *fp = strtok(argv[1], "/");
+    int token_len;
+    int len_fp = strlen(argv[1]);
+
+    char *n_token;
     char *fp_tokens[LENGTH];
-    char *str_vale;
+    char *fp;
+
+    strncpy(fp, argv[1], len_fp + 1);
+    fp = strtok(fp, "/");
 
     while(fp != NULL){
-         printf("fp_tokens[tokens]: %s, %d\n", fp, (int) strlen(fp));
+        token_len = strlen(fp);
+        printf("fp_tokens[%d]: %s, %d\n", tokens, fp, token_len);
+
         fp_tokens[tokens] = fp;
         tokens++;
-        fp = strtok(NULL, "/");
+        fp= strtok(NULL, "/");
     }
+    printf("tokens: %d\n\n", tokens);
     
-    return 0;
 }
