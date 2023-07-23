@@ -1,0 +1,408 @@
+/*
+ * style.css
+ *
+ * CSC309 Assignment 1
+ * Winter 2023
+ *
+ */
+
+ *, html {
+   margin: 0px;
+   padding: 0px;
+ }
+
+ body header main footer{ 
+  font-family: sans-serif !important;
+  margin: 0px;
+ }
+
+
+ /* 
+ Styling for each of the elements within the main sections of the page
+ */
+
+
+ /*CSS pertaining to paragraphs - begin*/
+p.text{
+  font-size: 22px;
+  padding: 15px 0px 25px 0px;
+}
+
+p.intro{
+  font-size: 47px;
+  font-weight: bold;
+  padding: 31px 0px 0px 0px;
+}
+
+
+p.about{
+  font-size: 46px;
+  font-weight: bold;
+  line-height: 56px;
+  width: 219px;
+  text-align: center;
+  padding: 0px 0px 16px 0px;
+}
+
+details{
+  padding-bottom: 16px;
+}
+
+details.classes summary{
+  font-size: 18px;
+  line-height: 22px;
+  width: 350px;
+}
+
+details.classes ul{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+p.integrity{
+  font-size: 14px;
+  padding-right: 8px;
+  padding-left: 8px;
+  line-height: 17px;
+  width: 643px;
+  text-align: center;
+}
+
+.pdf{
+  padding-top: 22px;
+  width: 720px;
+  height: 60vh;
+  position: relative;
+}
+/* CSS pertaining to paragraphs - end */
+
+
+/*css pertaining to headers - begin*/
+ nav{
+  width: 258px;
+  height: 54px;
+  padding: 7px 0px 7px 7px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+ }
+
+
+ header nav a{
+   padding: 16px 16px 16px;
+   text-decoration: none;
+   text-align: left;
+ }
+
+ header nav a:hover{
+    color: white;
+ }
+
+ 
+/*details for widget*/
+.sel{
+  color: #b2f5ea;
+  font-weight: bold;
+}
+
+.unsel{
+  color: #00b8d4;
+}
+/*css pertaining to headers - end*/
+
+
+ 
+
+
+/*css property for footer - begin*/
+footer p{
+  font-style: normal;
+  font-size: 15px;
+  color: #FFFFFF;
+}
+/*css property for footer - end*/
+
+/*css description for main*/
+main a.button {
+  border: 2px solid #007EA8;
+  width: 122px;
+  height: 38px;
+  border-radius: 4px;
+  background-color: white;
+  
+  color: #007EA8;
+  font-weight: bold;
+  font-size: 15px;
+  transition-duration: 0s;
+  text-decoration: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main a.button > p {
+  padding: 9px 20px 11px 20px;
+}
+
+main a.button:hover{
+  border: 2px solid white;
+  background-color: #007EA8;
+  color: white;
+}
+
+a.email{
+  font-size: 27px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 17px 0px 28px 0px;
+  color: #0000EE;
+}
+
+img.image{
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  border-radius: 100px;
+}
+/*css description for main*/
+
+main form{
+  width: 772px;
+  height: 364px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label.email{
+  font-weight: bold;
+  width: 90px;
+  padding: 15px 14px 30px 20px;
+}
+
+form label.feedback{
+  font-weight: bold;
+  padding: 15px 19px 101px 33px;
+}
+
+form label.attach{
+  font-weight: bold;
+  padding: 15px 19px 37px 17px;
+}
+
+
+main form input.text{
+  height: 22px;
+  width: 648px;
+  border: 1px solid #DDDDDD;
+  padding: 15px 0px 15px 10px;
+}
+
+main form input.check{
+  height: 19px;
+  width: 19px;
+}
+
+main form input.submit{
+  border: 2px solid #007EA8;
+  height: 35px;
+  width: 134px;
+  border-radius: 4px;
+  background-color: white;
+  
+  color: #007EA8;
+  font-weight: bold;
+  font-size: 12px;
+  transition-duration: 0s;
+  text-decoration: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main form input.submit:hover{
+  border: 2px solid white;
+  background-color: #007EA8;
+  color: white;
+}
+
+main form textarea{
+  resize: none;
+  height: 108px;
+  border: 1px solid #DDDDDD;
+  /*width: 639px;*/
+  width: 648px;
+}
+
+div.agree{
+  padding: 16px 10px 13px 82px;
+  line-height: 20px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+div.post{
+  padding-left: 123px;
+  padding-right: 510px;
+}
+
+label.at{
+  width: 260px;
+  padding-left: 19px;
+  line-height: 20px;
+}
+
+div.e{
+  width: 772px;
+  height: 64px;
+  
+  display: flex;
+  flex-direction: row;
+}
+
+div.f{
+  width: 772px;
+  height: 134px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+div.a{
+  width: 772px;
+  height: 70px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+div.c{
+  width: 772px;
+  height: 52px;
+}
+
+div.s{
+  height: 37px;
+  width: 772px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 480px) {
+  div.e{
+    display: block;
+  }
+
+  div.f{
+    display: block;
+  }
+  
+  div.a{
+    display: block;
+  }
+  
+  div.c{
+    display: block;
+  }
+  
+  div.s{
+    display: block;
+  }
+}
+
+/*TABLE FOR CONTACT
+.table{
+  width: 772px;
+  height: 364px;
+  padding: 28px 0px 0px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.email_add{
+  width: 772px;
+  height: 64px;
+  background-color: green;
+  
+  display: flex;
+  flex-direction: row;
+}
+
+.email_add input{
+  
+}
+
+.email_add p{
+}
+
+.feedback{
+  width: 772px;
+  height: 134px;
+  background-color: purple;
+}
+
+.attach{
+  width: 772px;
+  height: 70px;
+  background-color: gold;
+}
+
+.checkb{
+  width: 772px;
+  height: 52px;
+  background-color: burlywood;
+}
+
+.submit{
+  height: 37px;
+  width: 772px;
+  background-color: gainsboro;
+}
+/*TABLE FOR CONTACT*/
+
+
+
+/*Main sections of the page*/
+
+
+header {
+  background-color: #333333;
+  height: 68px;
+  width: 1512;
+}
+
+main {
+   min-height: calc(100vh - 115px);
+   background-color: #BBBBBB;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding: 128px 0px 128px 0px;
+}
+
+footer{
+   height: 3rem;
+   background-color: #333333;
+   position: static;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+

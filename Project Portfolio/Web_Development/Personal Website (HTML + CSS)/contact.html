@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSC309 A1 - Contact</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- TODO: complete me -->
+  <header>
+    <nav>
+      <a href="index.html" class="unsel">Home</a>
+      <a href="about.html" class="unsel">About</a>
+      <a href="#" class="sel">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <img class="image", src="Nathan.jpg"> </img>
+    <p class="intro">Nathan Lisulov</p>
+    <a href="mailto:nathan.lisulov@mail.utoronto.ca?subject=Bug Found&body=I found the following bug on your website" class="email">nathan.lisulov@mail.utoronto.ca</a>
+    <form action="https://postman-echo.com/post">
+      <div class="e">
+        <label class="email" name="email">Your Email:</label>
+        <input class="text" type="text" required></input><br>
+      </div>
+      
+      <div class="f">
+        <label class="feedback" for="feedback">Feedback:</label>
+        <textarea placeholder="Enter your feedback here" required></textarea><br>
+      </div>
+
+      
+      <div class="a">
+        <label class="attach" for="attachment">Attachment:</label>
+        <input class="text" type="file" id="myfile" name="myfile" required><br>
+      </div>
+      
+      <div class="c">
+        <div class="agree">
+          <input class="check" type="checkbox" required></input>
+          <label class="at">You agree to receive emails from me</label><br>
+        </div>
+      </div>
+      
+      <div class="s">
+        <div class="post">
+          <input class="submit" type="submit" value="Send Feedback" required></input>
+        </div>
+      </div>
+
+      
+    </form>
+  </main>
+  <footer>
+    <p>Copyright 2023 by lisulovn.</p>
+  </footer>
+</body>
+</html>
