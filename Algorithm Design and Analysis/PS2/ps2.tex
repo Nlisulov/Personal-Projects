@@ -1,0 +1,369 @@
+\documentclass{assignment-373}
+\usepackage{mathabx}
+\usepackage{tikz}
+\usepackage{color}
+
+
+\anum{2}
+\course{CSC373}
+\duedate{Nov 14, 2022}
+\filename{ps2.pdf, ps2.tex, likeliest\_evolution.py}
+
+\begin{document}
+
+\think
+
+\textbf{Please see the course information sheet for the late submission
+  policy.}
+
+\begin{enumerate}
+\item \textbf{[15 points]}
+
+  You are planning a new office for the tech giant
+  \textsc{SpaceNook}. You know that one important aspect to keeping
+  your employees happy and functioning well is quick access to free
+  snacks.  You will determine amongst all the seating locations for
+  employees in the new office, what is the longest time it would take
+  for an employee to reach their nearest snack station.
+
+%   You are studying the layout of the city of \textsc{Mediviala}.
+%   The city is
+% filled with several historical buildings. Being medivial, the dominant
+% material used for constructing these buildings is wood. This makes
+% protecting these buildings from fire a very important aspect of city
+% planning. We will determine that among all the historical buildings in
+% the city, what was the longest time it would have taken in order to
+% get help in case of a fire in one of these buildings.
+
+  You have access to a possible map for the new office for
+  \textsc{SpaceNook}.  All the employee locations in the new office
+  have been numbered from $[n] = \{1,\ldots, n\}.$
+  %
+  
+  You are given a list $P$ of pathways in the office (including
+  hallways, stairs, elevators), with $|P| = m$. Each such pathway
+  connects two end points that are among the office locations numbered
+  $1, \ldots, n,$ and is specified as a pair of such locations.
+%
+  For each pathway, you are also provided the time in minutes required
+  to travel along the pathway in either direction.
+
+% $R$ connecting various locations in the city, along with the time
+% required to travel along them. Concretely, each road connects two end
+% points that among the city locations numbered $1, \ldots, n.$ For each
+% road, you are also given the time in minutes taken to travel along
+% that road. Note that a road can be traveled in either direction.
+
+% with $n$ locations
+% $[n] := \{1,\ldots,n\}$, where any two locations $i$ and $j$ are
+% potentially connected by a bidirecitonal road of length $\ell(i,j)$,
+% where $i, j \in [n]$. Let $m$ denote the number of the connections
+% among the locations in the city.
+  Finally, you are given two lists. The first list $E \subseteq [n]$
+  contains the locations of all the employees in the office.
+%
+  The second list $S \subseteq [n]$ represents the list of snack
+  stations in the office.
+% are also
+% given two sets with $H,F \subset [n]$ and $H \cap F = \emptyset$,
+% where $H$ and $F$ represent the historical buildings and the fire
+% stations in the city, respectively.
+
+  Your goal is to determine, the shortest distance for each employee
+  location, to its \emph{closest} snack station.
+%
+  Follow the steps below to design an algorithm for this problem that
+  has a worst-case time complexity of $O(m \log n).$
+%
+\begin{enumerate}
+\item \textbf{(1 point)} Describe how will you model the problem, and
+  the data-structure(s) that you will use to store the input
+  information.
+\item \textbf{(2 points)} Briefly describe in up to 3 lines how you
+  can solve the problem in $O\left(|E|m \log n\right)$ worst-case
+  time, where $|E|$ denotes the number of employee locations in the
+  office.
+\item \textbf{(2 points)} Briefly describe in up to 3 lines how you
+  can solve the problem in $O\left(|S|m \log n\right)$ worst-case
+  time, where $|S|$ denotes the number of snack stations in the
+  office.
+\item \label{item:algo} \textbf{(5 points)} Propose an algorithm that
+  solves the problem in $O(m \log n)$ worst-case time, and justify its
+  correctness.
+\item \textbf{(3 points)} Write the pseudo-code for the final
+  algorithm described in part~\ref{item:algo}
+  % \item \textbf{(5 points)} Give a correctness proof for your algorithm.
+\item \textbf{(2 points)} Describe a short modification to the above
+  algorithm so that it also finds the closest snack station for each
+  employee location in addition to the shortest distance in
+  $O(m \log n)$ worst-case time.
+\end{enumerate}
+
+
+\item \textbf{[15 points]}
+
+You work for a national biotechnology lab, and are studying the
+evolution of the SARS-CoV-2 virus (also referred to as Covid-19).
+You are trying to determine the most likely way the current variant
+evolved from the original variant.
+
+You have a database of genomic sequences of lots of variants of the
+virus. You have access to a software that predicts the probability of
+a variant \textsf{Var1} evolving into another variant
+\textsf{Var2}. However, this software only works accurately for a
+small set of the pairs of variants that have similar genomes. These
+probabilities are given to you as tuples in a list,
+e.g. \textsf{[(Var1, Var2, 0.95), (Var2, Var1, 0.95), (Var1, Var3,
+  0.90), (Var2, Var4, 0.85). (Var3, Var4, 0.90)]}. The tuple
+\textsf{(Var1, Var2, 0.95)} indicates that there is a 0.95 probability
+of \textsf{Var1} evolving into \textsf{Var2}.
+
+For the purpose of this problem, we will assume that all the
+probabilities given in the above list are accurate, and that if a pair
+is not in the list, that evolution cannot happen directly (but can
+happen via intermediate variants). In the above example, \textsf{Var1}
+cannot directly evolve into \textsf{Var4}, but can indirectly evolve
+into \textsf{Var4} (via either \textsf{Var2} or \textsf{Var3}).
+
+Your goal is to design and implement an algorithm to find a sequence
+of possible evolutions starting from a given starting variant,
+e.g. \textsf{Var1}, to the final variant, e.g. \textsf{Var4}, that
+maximizes the probability of evolution, together with the probability
+of this sequence of evolutions.
+
+Assume that different jumps are independent, and hence the outcome of
+one evolution does not affect the probabilities of other evolutions.
+
+In the above example, the sequence of evolutions \textsc{Var1} $\to$
+\textsc{Var3} $\to$ \textsc{Var4} has a probability of 0.90*0.90 =
+0.81. This is larger than the probability of 0.95*0.85 = 0.8075 for
+the sequence of evolutions \textsc{Var1} $\to$ \textsc{Var2} $\to$
+\textsc{Var4}.
+
+\textbf{(12 points)} Implement the function
+\texttt{likeliest\_evolution} which has the following input
+parameters:
+\begin{itemize}
+\item \texttt{num\_variants}: an integer $n \ge 0$ specifying the
+  number of variants being considered. (For simplicity, you can assume
+  that the variants are numbered $1,\ldots,n$ rather than using strings)
+\item \texttt{poss\_evolutions}: a list of triples, where each triple
+  $(i,j,p)$ represents a possible evolution from variant $i$ to
+  variant $j,$ along with the probability $p$ of transition.
+\item \texttt{s}: an integer $s$ representing the initial variant
+\item \texttt{t}: an integer $t$ representing the final variant
+\end{itemize}
+
+
+
+
+
+Your algorithm should output:
+\begin{itemize}
+\item a list of integers representing the sequence of variant
+  evolution that maximizes the probability of evolution of the final
+  variant, starting from the initial variant.
+\item a float representing the total probability of evolution along
+  the above sequence.
+\end{itemize}
+
+
+
+        \textbf{Please include comments in your code to explain what
+          your algorithm is doing.}
+
+
+\textbf{(3 points)} Clearly and concisely explain your approach for
+the above algorithm.
+
+For the above example, a call to \texttt{likeliest\_evolution} looks
+as follows:
+\begin{verbatim}
+likeliest_evolution(
+ 4,
+ [[1,2,0.95], [2,1,0.95], [1,3,0.90], [2,4,0.85], [3,4,0.90]],
+ 1, 4)
+\end{verbatim}
+The output should the sequence of evolution \texttt{[1,3,4]} and the
+probability of this sequence as \texttt{0.81}.
+
+
+Requirements:
+\begin{itemize}
+\item Your code must be written in Python 3, and the filename must be \texttt{likeliest\_evolution.py}.
+\item We will grade only the \texttt{likeliest\_evolution} function;
+  please do not change its signature in the starter code. You may
+  include as many helper functions as you wish
+\item You are not allowed to use the built-in Python dictionary or set
+  or any other built-in data-structure (other than a list or array).
+\item To get full points, your algorithm must have an asymptotic
+  worst-case time complexity of $O(|T| \log n),$ where $T$ is the size
+  of the list \texttt{poss\_evolutions}.
+\item For each test-case that your code is tested on, your code must
+  run within 10x the time taken by our solution. Otherwise, your code
+  will be considered to have timed out.
+\end{itemize}
+
+
+
+{\color{red}
+
+
+
+  }
+\item \textbf{[15 points]}
+
+You are working for an electric self-driving taxi startup in Toronto.
+ % their team responsible for managing driving routes for your taxis.
+%
+In order to determine the minimum battery capacity your taxis need to
+have, you want to compute the maximum time taken by a taxi to travel
+between any source location and any destination location in the city.
+
+We're going to build the first basic model to estimate this time.
+%
+For simplicity, we will assume that the city can be described as an
+$n \times n$ grid, aligned with the cardinal directions (North, South,
+East, West), where $(0,0)$ is the South-West corner of the city.
+%
+You are given an $n \times n$ array $M$ such that $M[i][j]$
+corresponds to the $(i,j)$ square in the grid for $0 \le i, j < n.$
+%
+Every entry $M[i][j]$ is either 1 or 0, where a 1 indicates that the
+$(i,j)$ square in the city is a 'road', and a taxi can be present in
+this square at any time. For simplicity, we will assume that on a
+square representing a road, the car can potentially be facing any of
+the four directions (North, South, East, West).
+%
+$M[i][j]$ being 0 indicates an obstacle at the square $(i, j)$, and a
+taxi can never be present in such a square.
+
+For this basic model, we will assume that the taxi can execute two
+kinds of instructions,
+\begin{enumerate}
+\item Move straight ahead by $k$ squares (for some $k$).
+
+  The time taken to move straight ahead by $k$ squares is $(a*k + b)$
+  minutes where $a, b$ are fixed positive constants that are provided
+  as part of the input.
+% 
+  This models the fact that starting and stopping the car takes some
+  extra time (specified by $b$), in addition to the time taken to move
+  per square (specified by $a$).
+  %
+  A taxi can execute such an instruction only if the $k$ locations
+  straight ahead are roads and not obstacles.
+
+\item Turn right or left within the same square by 90 degrees.
+
+  The time taken to take a single 90 degree turn is $c$ minutes (a
+  non-negative constant specified as part of the input). Note that the car
+  can take a U-turn by taking 2 consecutive turns.
+\end{enumerate}
+%
+%
+
+Your goal is to determine a starting square along with a starting
+orientation (N, S, E, W), and a finishing square along with a
+finishing orientation, such that the shortest time to go from the
+starting configuration (location and facing direction) to the
+finishing configuration is the largest possible over all possible
+valid choices of starting and finishing configurations.
+%
+Note that the taxi can never be on a square representing an obstacle,
+and can never leave the grid.
+
+For example, consider the $3 \times 3$ grid, where black indicates an
+obstacle, and a white square indicates a road. 
+\begin{center}
+\includegraphics[scale=0.5]{city-layout.png}
+\end{center}
+For $a=b=c=1,$ the maximum possible time taken by the taxi would be 11
+minutes. One possible starting and ending configuration that requires
+11 minutes is to go from the starting square $(1,2),$ where at the
+beginning the taxi is facing North, to go to the final location $(1,0)$
+with the taxi facing North at the final location. For this, the
+fastest sequence of steps for the taxi would be as follows:
+\begin{enumerate}
+\item Turn right (takes 1 minute, the taxi is now at $(1,2)$ and faces
+  East)
+\item Go ahead 1 steps (takes 2 minutes, the taxi is now at $(2,2)$
+  and faces East)
+\item Turn right (takes 1 minute, the taxi is now at $(2,2)$ and faces
+  South)
+\item Go ahead 2 steps (takes 3 minutes, the taxi is now at $(2,0)$
+  and faces South)
+\item Turn right (takes 1 minute, the taxi is now at $(2,0)$ and faces
+  West)
+\item Go ahead 1 steps (takes 2 minutes, the taxi is now at $(1,0)$
+  and faces West)
+\item Turn right (takes 1 minute, the taxi is now at $(1,0)$ and faces
+  North)
+\end{enumerate}
+
+
+% For example, given a directed graph $G=(V,E)$, with
+% \begin{align*}
+%   & V=\{1,2,3,4\},~~E=\{(1 \to 2), (1 \to 3), (1 \to 4), (2 \to 4), (3
+%   \to 4)\}, \\
+%   & p((1 \to 2)) = 0.2, p((1 \to 3)) = 0.5, p((1 \to 4)) = 0.1, p((2 \to
+%   4)) = 0.5, p((3 \to 4)) = 0.3,\\
+%   & s=1, t=4,
+% \end{align*} the $(s,t)$ path that maximizes the
+% probability of a successful traversal is $(1 \to 3 \to 4)$ achieving a
+% probability
+% of $0.5 \times 0.3 = 0.15$.
+
+% For example, given a directed graph $G=(V,E)$, with  \[ V=\{1,2,3,4\},~~E=\{(1,2,0.2), (1,3, 0.5), (1,4,0.1), (2,4,0.5), (3,4,0.3)\},~~s=1, t=4, \]
+% the $(s,t)$ path that maximizes the probability of a successful traversal is $(1,3,4)$ achieving a weight of $0.5 \times 0.3 = 0.15$. 
+
+
+Design an algorithm which takes the following inputs as parameters:
+\begin{itemize}
+\item \texttt{grid\_size}: an integer $n \ge 0$ specifying the size
+  of the grid.
+\item \texttt{a}: a number $a \ge 0$
+\item \texttt{b}: a number $b \ge 0$
+\item \texttt{c}: a number $c \ge 0$
+\item \texttt{M}: A 2-dimensional $n \times n$ array $M$ specifying
+  the layout of the city.
+\end{itemize}
+
+Your algorithm should return the maximum possible time taken by the
+taxi to go from a starting configuration to an ending configuration
+using the fastest possible sequence of steps, where the maximum is
+taken over all possible feasible configurations.
+
+We will model this as a graph problem.  If necessary, you are allowed
+to invoke algorithms covered in class without describing how they
+work, but you must clearly describe the inputs provided to the
+algorithms. e.g. If invoking a graph algorithm, clearly describe the
+graph: what are the vertices, edges (undirected/directed), edge
+weights (if any) for the graph? Also describe any other inputs to the
+algorithm, e.g. starting vertex for Dijkstra's algorithm.
+
+You are also free to design your own algorithm from scratch.
+
+\begin{enumerate}
+\item (7 points) Design an $O(n^6)$ time algorithm for this
+  problem. Explain clearly why your graph models the problem
+  correctly, and why your algorithm returns the correct answer.
+  
+\item (8 points) Consider the special case of $b=0.$ (This means that
+  we ignore the time taken by the taxi to start/stop, and hence ``Move
+  straight by k steps'' is the same as ``Move straight by 1 step''
+  executed $k$ times in sequence).
+
+  Design an $O(n^4\log n)$ time algorithm for the problem in this
+  special case. Explain clearly why your graph models the problem
+  correctly, and why your algorithm returns the correct answer.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
