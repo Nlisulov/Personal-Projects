@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Board {
     public int size = 5;
 
@@ -63,8 +64,8 @@ public class Board {
      * @param coordinate Coordinate to find the cell
      * @return Cell that is located at the given coordinate
      */
-    public Cell getCell(Coordinate coordinate) { // TODO
-        return null;
+    public Cell getCell(Coordinate coordinate) {
+        return board[coordinate.row][coordinate.col];
     }
 
     /**
@@ -79,16 +80,59 @@ public class Board {
      * @return List of cells
      */
     public List<Cell> getMusketeerCells() { // TODO
-        return List.of();
+    	Cell [] musket_cell = new Cell[3];
+    	int mCount = 0;
+    	for(int row = 0; row < size; row++) {
+    		for(int col = 0; col < size; col++) {
+    			if (!board[row][col].hasPiece()) {
+    				continue;
+    			}
+    			
+    			Piece cell_piece = board[row][col].getPiece();
+    			if (cell_piece.getType() == Piece.Type.MUSKETEER) {
+    				musket_cell[mCount] = board[row][col];
+    				mCount++;
+    			}
+    		}
+    	}
+    	System.out.println("\n\n\n");
+    	System.out.println("-------------------------------------");
+    	System.out.println(List.of(musket_cell));
+    	System.out.println("-------------------------------------");
+        return List.of(musket_cell);
     }
-
+    
+    
     /**
      * Gets all the Guard cells on the board.
      * @return List of cells
      */
     public List<Cell> getGuardCells() { // TODO
-        return List.of();
+    	int counter = 0;
+    	Cell [] guard_cell = new Cell[22];
+    	
+    	for(int row = 0; row < size; row++){
+    		for(int col = 0; col < size; col++){
+    			if (!board[row][col].hasPiece()) {
+    				continue;
+    			}
+    			
+    			Piece cell_piece = board[row][col].getPiece();
+    			if (cell_piece.getType() == Piece.Type.GUARD) {
+    				guard_cell[counter] = board[row][col];
+    				counter++;
+    			}
+    		}
+    	}
+    	
+    	Cell [] resized_cell = new Cell[counter];
+    	for(int count = 0; count < counter; count++) {
+    		resized_cell[count] = guard_cell[count];
+    	}
+    	
+        return List.of(resized_cell); 
     }
+    
 
     /**
      * Executes the given move on the board and changes turns at the end of the method.
