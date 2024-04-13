@@ -1,13 +1,13 @@
-#Musketeer Game
+# Musketeer Game
 
-#Table of contents
+# Table of contents
 1. [Objective](#Objective)
 2. [How to play](#How-to-play)
 
-##Objective
+## Objective
 Online console game to play the Musketeer game between two players on two different computers.
 
-##How to play
+## How to play
 Musketeer Game: 
     The game consists of two types of pieces: Guards and Musketeers.
     The game starts of with the following board overlayed on a coordinate system:
